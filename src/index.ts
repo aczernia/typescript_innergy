@@ -1,4 +1,6 @@
-export type ServiceYear = 2020 | 2021 | 2022 | "default";
+export const DEFAULT_PRICELIST = 0;
+
+export type ServiceYear = 2020 | 2021 | 2022 | typeof DEFAULT_PRICELIST;
 export type ServiceType = "Photography" | "VideoRecording" | "BlurayPackage" | "TwoDayEvent" | "WeddingSession";
 
 export type RequiredServiceType = {
@@ -78,7 +80,7 @@ export const priceList: PriceListType = {
                 }
             }
         },
-        default: {
+        0: {
             price: 600,
             discounts: {
                 Photography: {
@@ -91,12 +93,12 @@ export const priceList: PriceListType = {
         },
     },
     BlurayPackage: {
-        default: {
+        0: {
             price: 300,
         },
     },
     TwoDayEvent: {
-        default: {
+        0: {
             price: 400,
         },
     }
@@ -154,7 +156,7 @@ export const calculatePriceForSelectedService = (
         };
     }
 
-    const defaultServicePriceList = servicePriceList["default"];
+    const defaultServicePriceList = servicePriceList[DEFAULT_PRICELIST];
     
     basePrice = defaultServicePriceList.price;
     discountPrice = basePrice;
